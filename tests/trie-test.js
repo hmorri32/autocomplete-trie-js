@@ -8,27 +8,14 @@ describe('TDD with TRIE', () => {
 
     assert.isFunction(trie.insert)
   })
-  
+  it('should allow me to add words', function() {
+    let trie = new Trie();
+
+  })
+
+
 })
 
-
-
-// -----------------------------------------
-//
-// // instantiate our trie
-// var trie = new Trie();
-//
-// // insert few values
-// trie.insert("hello");
-// trie.insert("helium");
-//
-// // check contains method
-// console.log(trie.contains("helium"));  // true
-// console.log(trie.contains("kickass")); // false
-//
-// // check find method
-// console.log(trie.find("hel"));  // [ 'helium', 'hello' ]
-// console.log(trie.find("hell")); // [ 'hello' ]
 
 
 // completion = new CompleteMe

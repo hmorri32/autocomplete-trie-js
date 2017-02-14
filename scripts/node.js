@@ -1,10 +1,12 @@
 class Node {
-  constructor(){
-
-
+  constructor(value){
+    this.value = value;
+    this.children = {};
+    this.endOfWord = null;
   }
 }
 
 
-
+//
+//
 export default Node
