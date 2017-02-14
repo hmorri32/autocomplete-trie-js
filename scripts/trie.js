@@ -29,7 +29,7 @@ class Trie {
     for(var i = 0; i < word.length; i++){
       if(!node.children[word[i]]){
         node.children[word[i]] = new Node(word[i])
-        console.log(node)
+        // console.log(node)
       }
 
       node = node.children[word[i]];
@@ -37,11 +37,15 @@ class Trie {
       if(i === word.length-1){
         node.isWord = true;
         this.count ++;
-        console.log(node)
+        // console.log(node)
       }
     }
   }
+
+  suggest(){
+  }
 }
+
 
 
 

@@ -27,38 +27,20 @@ describe('TDD with TRIE', () => {
     expect(trie.count).to.eq(1);
   })
 
-  it.only('should update the count when multiple words are inserted', function(){
+  it('should update the count when multiple words are inserted', function(){
     expect(trie.count).to.eq(0);
     trie.insert('pizza')
     expect(trie.count).to.eq(1);
     trie.insert('pizzas')
     expect(trie.count).to.eq(2);
-    console.log(JSON.stringify(trie, null, 4))
+    // console.log(JSON.stringify(trie, null, 4))
+  })
+
+  it('should recognize suggest as a function', function() {
+    assert.isFunction(trie.suggest)
 
   })
 
 
 })
 
-
-
-
-
-// completion = new CompleteMe
-//
-// completion.insert("pizza")
-//
-// completion.count()
-// => 1
-//
-// completion.insert('suh')
-//
-// completion.count()
-//
-// => 2
-//
-// completion.suggest("piz")
-// => ["pizza"]
-//
-// completion.suggest('s')
-// => ["suh"]
