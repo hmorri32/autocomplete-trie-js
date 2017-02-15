@@ -37,7 +37,7 @@ describe('TDD with TRIE', () => {
                     .children['o']
                     .children['r']
                     .isWord)
-                    .to.be.null
+                    .to.be.false
   })
 
   it('should recognize count as a property of Trie', function() {
@@ -96,7 +96,7 @@ describe('TDD with TRIE', () => {
                     .children['d']
                     .children['e']
                     .isWord)
-                    .to.be.null
+                    .to.be.false
   })
 
   it('should recognize suggest as a function', function() {
@@ -106,6 +106,17 @@ describe('TDD with TRIE', () => {
   it('suggest should output an array', function(){
 
     expect(trie.suggest('p')).to.deep.equal([])
+    // console.log(trie.head.children['p'].children['i'].children['z'].children['z'].children['a'].isWord)
+
+  })
+
+  it.only('suggest should traverse the node structure and list stuff', function(){
+    trie.insert('pizza')
+    trie.insert('pizzeria')
+    trie.insert('pizzazzzz')
+
+    console.log(trie.suggest('pizza'))
+    // expect(trie.suggest('p')).to.deep.equal([])
     // console.log(trie.head.children['p'].children['i'].children['z'].children['z'].children['a'].isWord)
 
   })

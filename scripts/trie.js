@@ -4,7 +4,7 @@ class Node {
   constructor(value){
     this.value = value;
     this.children = {};
-    this.isWord = null;
+    this.isWord = false;
   }
   getWord(){
     // var output = [];
@@ -50,16 +50,31 @@ class Trie {
 
   suggest(pre){
     let node = this.head;
-    let suggestions = [];
+    let output = [];
 
     for(let i = 0; i < pre.length; i++){
       if(node.children[pre[i]]){
         node = node.children[pre[i]];
       } else {
-        return suggestions
+        return output
       }
     }
-    return suggestions
+
+    findWords(node, output);
+
+    return output
+  }
+
+}
+
+function findWords(node, arr) {
+
+  if (node.isWord) {
+    arr.unshift(node.isWord);
+  }
+
+  for (var eachChild in node.children) {
+    findWords(node.children[eachChild], arr);
   }
 }
 
