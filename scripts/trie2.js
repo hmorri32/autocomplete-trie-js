@@ -1,9 +1,9 @@
 class Node {
   constructor(d){
-    this.data = d
+    this.data     = d
     this.children = {}
-    this.isWord = false;
-    this.value = ""
+    this.isWord   = false;
+    this.value    = ""
   }
 }
 

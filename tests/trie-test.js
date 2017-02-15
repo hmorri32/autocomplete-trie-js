@@ -63,14 +63,14 @@ describe('TDD with TRIE', () => {
     expect(trie.count).to.eq(2);
   })
 
-  it('should be able to populate the trie given words from the dictionary', function(){
+  it.only('should be able to populate the trie given words from the dictionary and count all words', function(){
 
     var arrayOfWords = fs.readFileSync('/usr/share/dict/words').toString('utf-8').trim().split('\n')
 
     arrayOfWords.forEach((word)=>{
       trie.insert(word.toLowerCase())
     })
-    // console.log(trie.head.children['d'].children['u'].children['d'].children['e'])
+    expect(trie.count).to.equal(235886)
   })
 
   it('should be able to confirm whether populated words in the dictionary are actual words', function(){
@@ -111,7 +111,6 @@ describe('TDD with TRIE', () => {
   it('suggest should output an array', function(){
 
     expect(trie.suggest('p')).to.deep.equal([])
-    // console.log(trie.head.children['p'].children['i'].children['z'].children['z'].children['a'].isWord)
 
   })
 
