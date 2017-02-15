@@ -6,16 +6,7 @@ class Node {
     this.children = {};
     this.isWord = false;
   }
-  getWord(){
-    // var output = [];
-    // var node = this;
-    //
-    // while (node !== null) {
-    //   output.unshift(node.key);
-    //   node = node.parent;
-    // }
-    // return output.join('');
-  }
+
 }
 
 class Trie {
