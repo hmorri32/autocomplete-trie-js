@@ -1,5 +1,7 @@
 import { expect, assert } from 'chai';
 import Trie       from '../scripts/trie'
+import Node       from '../scripts/node'
+
 const text       = "/usr/share/dict/words"
 
 describe('TDD with TRIE', () => {
@@ -38,9 +40,39 @@ describe('TDD with TRIE', () => {
 
   it('should recognize suggest as a function', function() {
     assert.isFunction(trie.suggest)
+  })
+  it('suggest should give suggestions based on the words prefix ', function(){
+    trie.insert('pizza')
+    trie.insert('pizzeria')
+    trie.insert('pizzasawwwce')
+
+
+    trie.suggest('p')
+    console.log(trie.suggest('p'))
 
   })
 
 
 })
 
+
+
+
+// completion = new CompleteMe
+//
+// completion.insert("pizza")
+//
+// completion.count()
+// => 1
+//
+// completion.insert('suh')
+//
+// completion.count()
+//
+// => 2
+//
+// completion.suggest("piz")
+// => ["pizza"]
+//
+// completion.suggest('s')
+// => ["suh"]

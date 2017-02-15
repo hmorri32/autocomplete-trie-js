@@ -1,7 +1,4 @@
-var fs = require("fs");
-
-
-
+import fs from "fs";
 
 class Node {
   constructor(value){
@@ -9,9 +6,10 @@ class Node {
     this.children = {};
     this.isWord = null;
   }
+  getWord(){
+
+  }
 }
-
-
 
 class Trie {
   constructor(){
@@ -20,16 +18,17 @@ class Trie {
   }
 
   insert(word){
+
     let node = this.head;
 
     if(word === undefined || word === null){
       throw new Error("error");
     }
 
-    for(var i = 0; i < word.length; i++){
+    for(let i = 0; i < word.length; i++){
       if(!node.children[word[i]]){
         node.children[word[i]] = new Node(word[i])
-        // console.log(node)
+        // console.log(node.children)
       }
 
       node = node.children[word[i]];
@@ -42,11 +41,20 @@ class Trie {
     }
   }
 
-  suggest(){
+  suggest(pre){
+    let node = this.head;
+    let suggestions = [];
+
+    for(let i = 0; i < pre.length; i++){
+      if(node.children[pre[i]]){
+        node = node.children[pre[i]];
+      } else {
+        return suggestions
+      }
+    }
+    return suggestions
   }
 }
-
-
 
 
 export default Trie;
