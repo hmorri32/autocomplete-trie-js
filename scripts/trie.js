@@ -5,26 +5,41 @@ class Node {
     this.value = value;
     this.children = {};
     this.isWord = false;
+    this.parent = null
+  }
+
+  traverse() {
+    var suggestions = [];
+    var node = this;
+
+    while (node !== null) {
+      suggestions.unshift(node.value);
+      node = node.parent;
+    }
+    return suggestions.join('');
   }
 }
 
 class Trie {
-  constructor(){
+  constructor() {
     this.head = new Node(null)
     this.count = 0;
   }
 
-  insert(word){
+  insert(word) {
 
     let node = this.head;
 
     if(word === undefined || word === null){
-      throw new Error("error");
+      throw new Error('error');
     }
 
     for(let i = 0; i < word.length; i++){
       if(!node.children[word[i]]){
         node.children[word[i]] = new Node(word[i])
+
+        node.children[word[i]].parent = node;
+
         // console.log(node.children)
       }
 
@@ -38,34 +53,39 @@ class Trie {
     }
   }
 
-  suggest(pre){
+  suggest(letters) {
     let node = this.head;
     let suggestions = [];
 
-    for(let i = 0; i < pre.length; i++){
-      if(node.children[pre[i]]){
-        node = node.children[pre[i]];
+    for(let i = 0; i < letters.length; i++){
+      if(node.children[letters[i]]){
+        node = node.children[letters[i]];
       } else {
         return suggestions
       }
     }
 
-    findWords(node, suggestions);
+    findWords(node, suggestions)
 
     return suggestions
   }
 
 }
 
-function findWords(node, arr) {
 
-  if (node.isWord) {
-    arr.unshift(node);
+function findWords(node, array) {
+
+  if (node.isWord === true) {
+    array.unshift(node.traverse());
   }
 
   for (var eachChild in node.children) {
-    findWords(node.children[eachChild], arr);
+    findWords(node.children[eachChild], array);
   }
 }
+
+
+
+
 
 export default Trie;

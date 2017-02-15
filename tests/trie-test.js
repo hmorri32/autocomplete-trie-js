@@ -17,9 +17,14 @@ describe('TDD with TRIE', () => {
     assert.isFunction(trie.insert)
   })
 
+  it('should throw error if nothing is inserted', function(){
+    expect(() => trie.insert()).to.throw('error');
+  })
+
   it('should allow me to insert words', function() {
     trie.insert('word')
   })
+
 
   it('should allow me to insert word and confirm that it is a word', function() {
     trie.insert('word')
@@ -113,15 +118,19 @@ describe('TDD with TRIE', () => {
   it.only('suggest should traverse the node structure and list stuff', function(){
     trie.insert('pizza')
     trie.insert('pizzeria')
-    trie.insert('pizzazzzz')
+    trie.insert('hey')
     trie.insert('suh')
     trie.insert('skateboard')
-    trie.insert('surfbort')
+    trie.insert('surf')
 
 
+    console.log(trie.suggest('skateboard'))
+    console.log(trie.suggest('p'))
 
+    expect(trie.suggest('skateboard')).to.deep.equal(['skateboard'])
 
-    console.log(trie.suggest('s'))
+    // console.log(trie.getAllWords())
+
     // expect(trie.suggest('p')).to.deep.equal([])
     // console.log(trie.head.children['p'].children['i'].children['z'].children['z'].children['a'].isWord)
 
