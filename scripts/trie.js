@@ -11,7 +11,7 @@ class Node {
     this.isWord   = false;
     this.parent   = null
   }
-  // Iterate through the parents, back to the root, to get words
+  // Iterate through the parents, back to the root(null), to get words
   traverse() {
     var suggestions = [];
     var node        = this;
