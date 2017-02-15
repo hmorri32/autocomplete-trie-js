@@ -2,9 +2,7 @@ import { expect, assert } from 'chai';
 import Trie               from '../scripts/trie'
 import Node               from '../scripts/node'
 import fs                 from "fs";
-
-const text       = "/usr/share/dict/words"
-
+require('locus')
 
 describe('TDD with TRIE', () => {
   let trie;
@@ -67,7 +65,7 @@ describe('TDD with TRIE', () => {
     arrayOfWords.forEach((word)=>{
       trie.insert(word.toLowerCase())
     })
-    console.log(trie.head.children['d'].children['u'].children['d'].children['e'])
+    // console.log(trie.head.children['d'].children['u'].children['d'].children['e'])
   })
 
   it('should be able to confirm whether populated words in the dictionary are actual words', function(){
@@ -86,7 +84,7 @@ describe('TDD with TRIE', () => {
 
   });
 
-  it.only('should be able to ascertain whether populated words are not actual words ', function(){
+  it('should be able to ascertain whether populated words are not actual words ', function(){
     var arrayOfWords = fs.readFileSync('/usr/share/dict/words').toString('utf-8').trim().split('\n')
 
     arrayOfWords.forEach((word)=>{
@@ -105,13 +103,9 @@ describe('TDD with TRIE', () => {
     assert.isFunction(trie.suggest)
   })
 
-  it('suggest should give suggestions based on the words prefix ', function(){
-    trie.insert('pizza')
-    trie.insert('pizzeria')
-    trie.insert('pizzasawwwce')
+  it('suggest should output an array', function(){
 
-
-    trie.suggest('p')
+    expect(trie.suggest('p')).to.deep.equal([])
     // console.log(trie.head.children['p'].children['i'].children['z'].children['z'].children['a'].isWord)
 
   })

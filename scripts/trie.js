@@ -7,7 +7,14 @@ class Node {
     this.isWord = null;
   }
   getWord(){
-
+    // var output = [];
+    // var node = this;
+    //
+    // while (node !== null) {
+    //   output.unshift(node.key);
+    //   node = node.parent;
+    // }
+    // return output.join('');
   }
 }
 
@@ -55,5 +62,6 @@ class Trie {
     return suggestions
   }
 }
+
 
 export default Trie;
