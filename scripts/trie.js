@@ -6,7 +6,6 @@ class Node {
     this.children = {};
     this.isWord = false;
   }
-
 }
 
 class Trie {
@@ -41,19 +40,19 @@ class Trie {
 
   suggest(pre){
     let node = this.head;
-    let output = [];
+    let suggestions = [];
 
     for(let i = 0; i < pre.length; i++){
       if(node.children[pre[i]]){
         node = node.children[pre[i]];
       } else {
-        return output
+        return suggestions
       }
     }
 
-    findWords(node, output);
+    findWords(node, suggestions);
 
-    return output
+    return suggestions
   }
 
 }
@@ -61,13 +60,12 @@ class Trie {
 function findWords(node, arr) {
 
   if (node.isWord) {
-    arr.unshift(node.isWord);
+    arr.unshift(node);
   }
 
   for (var eachChild in node.children) {
     findWords(node.children[eachChild], arr);
   }
 }
-
 
 export default Trie;

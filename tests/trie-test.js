@@ -114,8 +114,14 @@ describe('TDD with TRIE', () => {
     trie.insert('pizza')
     trie.insert('pizzeria')
     trie.insert('pizzazzzz')
+    trie.insert('suh')
+    trie.insert('skateboard')
+    trie.insert('surfbort')
 
-    console.log(trie.suggest('pizza'))
+
+
+
+    console.log(trie.suggest('s'))
     // expect(trie.suggest('p')).to.deep.equal([])
     // console.log(trie.head.children['p'].children['i'].children['z'].children['z'].children['a'].isWord)
 
