@@ -1,4 +1,4 @@
-import fs   from "fs";
+// import fs   from "fs";
 // import Node from './node'
 
 class Node {
@@ -16,7 +16,7 @@ class Node {
 
 class Trie {
   constructor() {
-    this.head  = new Node(null)
+    this.head  = new Node(null);
     this.count = 0;
     this.suggestions = [];
   }
@@ -37,7 +37,7 @@ class Trie {
 
     for(let i = 0; i < word.length; i++){
       if(!node.children[word[i]]){
-        node.children[word[i]] = new Node(word[i])
+        node.children[word[i]] = new Node(word[i]);
       }
 
       // proceed to the next level down
@@ -53,8 +53,8 @@ class Trie {
 
   populate(array){
     array.forEach((word)=>{
-      this.insert(word.toLowerCase())
-    })
+      this.insert(word.toLowerCase());
+    });
   }
 
   // returns every word weve inserted given the first letter(s)
@@ -66,9 +66,9 @@ class Trie {
 
     for(let i = 0; i < prefix.length; i++){
       if(current.children[prefix[i]]){
-        current = current.children[prefix[i]]
+        current = current.children[prefix[i]];
       } else {
-        return this.suggestions
+        return this.suggestions;
       }
     }
 
@@ -82,7 +82,7 @@ class Trie {
     // })
 
     this.findWords(current,prefix);
-    return this.suggestions
+    return this.suggestions;
   }
 
   // Recursive function used to find all words in a node
@@ -94,12 +94,12 @@ class Trie {
       this.suggestions.push(prefix);
     }
 
-    let keys = Object.keys(current.children)
+    let keys = Object.keys(current.children);
 
     keys.forEach(letter => {
       let next = current.children[letter];
       this.findWords(next, (prefix + letter));
-    })
+    });
   }
 // object isntead of (suggestions) array, and key would be userstring
 
@@ -111,35 +111,35 @@ class Trie {
 
 // DOM !!!!!!!!!!!
 
-//
-// let insertInput  = document.getElementById('insert-field')
-// let save         = document.getElementById('insert')
-// let insertDiv    = document.getElementById('append-insert')
-//
-// let suggestInput = document.getElementById('suggestion-field')
-// let searchBtn    = document.getElementById('suggest')
-// let suggestDiv   = document.getElementById('append-suggest')
-//
-// var trie         = new Trie()
-//
-// save.addEventListener('click', function(){
-//   let inputVal      = insertInput.value
-//   insertInput.value = ('')
-//   trie.insert(inputVal)
-//   insertDiv.append("word: " + inputVal +  ", ")
-// })
-//
-// searchBtn.addEventListener('click', function(){
-//   let inputValue     = suggestInput.value
-//   suggestInput.value = ('')
-//
-//   trie.suggest(inputValue)
-//
-//
-//   suggestDiv.append(trie.suggestions)
-//   console.log(trie.suggestions)
-//
-// })
+
+let insertInput  = document.getElementById('insert-field');
+let saveBtn      = document.getElementById('insert');
+let insertDiv    = document.getElementById('append-insert');
+
+let suggestInput = document.getElementById('suggestion-field');
+let searchBtn    = document.getElementById('suggest');
+let suggestDiv   = document.getElementById('append-suggest');
+
+const trie       = new Trie();
+
+saveBtn.addEventListener('click', function(){
+  let inputVal      = insertInput.value;
+  insertInput.value = ('');
+  trie.insert(inputVal);
+  insertDiv.append('word: ' + inputVal +  ', ');
+});
+
+searchBtn.addEventListener('click', function(){
+  suggestDiv.innerText = ('');
+  trie.suggestions     = [];
+  let inputValue       = suggestInput.value;
+  suggestInput.value   = ('');
+
+  trie.suggest(inputValue);
+
+  suggestDiv.append(trie.suggestions);
+
+});
 
 
 
@@ -147,4 +147,4 @@ class Trie {
 
 
 
-export default Trie;
+// export default Trie;
