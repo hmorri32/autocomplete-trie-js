@@ -2,6 +2,7 @@ import { expect, assert } from 'chai';
 import Trie               from '../scripts/trie'
 import Node               from '../scripts/node'
 import fs                 from "fs";
+
 require('locus')
 
 describe('TDD with TRIE', () => {

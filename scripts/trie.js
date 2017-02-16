@@ -1,16 +1,7 @@
 // import fs   from "fs";
 // import Node from './node'
 
-let input = document.getElementById('autocorrect-dis')
 
-input.addEventListener('blur', function(){
-  let trie = new Trie()
-  trie.insert(input.value)
-
-
-  console.log(trie)
-  // input.text = trie.insert()
-})
 
 class Node {
   // the "vale" will reference the character in sequence
@@ -107,6 +98,39 @@ class Trie {
   // re sort array to accomadate that word
 
 }
+
+// DOM !!!!!!!!!!!
+
+
+let insertInput  = document.getElementById('insert-field')
+let save         = document.getElementById('insert')
+let insertDiv    = document.getElementById('append-insert')
+
+let suggestInput = document.getElementById('suggestion-field')
+let searchBtn    = document.getElementById('suggest')
+let suggestDiv   = document.getElementById('append-suggest')
+
+var trie         = new Trie()
+
+save.addEventListener('click', function(){
+  let inputVal = insertInput.value
+  trie.insert(inputVal)
+  insertDiv.append("word: " + inputVal +  ", ")
+  insertInput.value = ('')
+  console.log(trie)
+})
+
+searchBtn.addEventListener('click', function(){
+  let inputValue = suggestInput.value
+  trie.suggest(inputValue)
+  suggestInput.value = ('')
+  
+  suggestDiv.append(trie.suggestions)
+
+
+})
+
+
 
 
 
