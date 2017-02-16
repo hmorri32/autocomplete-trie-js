@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { expect, assert } from 'chai';
 import Trie               from '../scripts/trie';
 import Node               from '../scripts/node';
@@ -143,12 +144,12 @@ describe('TDD with TRIE', () => {
                                                 'pizzeria',
                                                 'pizzicato',
                                                 'pizzle'
-                                              ])
-    console.log(trie.suggestions)
-  })
+                                              ]);
+    console.log(trie.suggestions);
+  });
 
 
-})
+});
 
 // completion = new CompleteMe
 //
