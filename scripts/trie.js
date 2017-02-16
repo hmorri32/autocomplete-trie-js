@@ -111,39 +111,39 @@ class Trie {
 // DOM !!!!!!!!!!!
 
 
-let insertInput  = document.getElementById('insert-field');
-let saveBtn      = document.getElementById('insert');
-let insertDiv    = document.getElementById('append-insert');
-
-let suggestInput = document.getElementById('suggestion-field');
-let searchBtn    = document.getElementById('suggest');
-let suggestDiv   = document.getElementById('append-suggest');
-
-const trie       = new Trie();
-
-saveBtn.addEventListener('click', function(){
-  let inputVal      = insertInput.value;
-  insertInput.value = ('');
-  trie.insert(inputVal);
-  insertDiv.append('word: ' + inputVal +  ', ');
-});
-
-searchBtn.addEventListener('click', function(){
-  suggestDiv.innerText = ('');
-  trie.suggestions     = [];
-  let inputValue       = suggestInput.value;
-  suggestInput.value   = ('');
-
-  trie.suggest(inputValue);
-
-  suggestDiv.append(trie.suggestions);
-
-});
-
-
-
-
-
+// let insertInput  = document.getElementById('insert-field');
+// let saveBtn      = document.getElementById('insert');
+// let insertDiv    = document.getElementById('append-insert');
+//
+// let suggestInput = document.getElementById('suggestion-field');
+// let searchBtn    = document.getElementById('suggest');
+// let suggestDiv   = document.getElementById('append-suggest');
+//
+// const trie       = new Trie();
+//
+// saveBtn.addEventListener('click', function(){
+//   let inputVal      = insertInput.value;
+//   insertInput.value = ('');
+//   trie.insert(inputVal);
+//   insertDiv.append('word: ' + inputVal +  ', ');
+// });
+//
+// searchBtn.addEventListener('click', function(){
+//   suggestDiv.innerText = ('');
+//   trie.suggestions     = [];
+//   let inputValue       = suggestInput.value;
+//   suggestInput.value   = ('');
+//
+//   trie.suggest(inputValue);
+//
+//   suggestDiv.append(trie.suggestions);
+//
+// });
+//
+//
+//
 
 
-// export default Trie;
+
+
+export default Trie;

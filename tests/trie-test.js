@@ -1,18 +1,14 @@
-/* eslint-disable */
 import { expect, assert } from 'chai';
 import Trie               from '../scripts/trie';
-import Node               from '../scripts/node';
 import fs                 from 'fs';
 
 require('locus');
 
 describe('TDD with TRIE', () => {
   let trie;
-  let node;
 
   beforeEach(function(){
     trie = new Trie();
-    node = new Node();
   });
 
   it('should recognize insert as a function', function(){
@@ -119,7 +115,7 @@ describe('TDD with TRIE', () => {
 
   });
 
-  it.only('suggest should traverse the node structure and suggest all words that contain the prefix ', function(){
+  it('suggest should traverse the node structure and suggest all words that contain the prefix ', function(){
     trie.insert('pizza');
     trie.insert('pizzeria');
     trie.insert('hey');
@@ -128,10 +124,8 @@ describe('TDD with TRIE', () => {
     trie.insert('skateboards');
     trie.insert('surf');
 
-    expect(trie.suggest('p')).to.deep.equal(['pizza',
-                                             'pizzeria'
-                                           ]);
-    console.log(trie.suggestions);
+    expect(trie.suggest('p')).to.deep.equal(['pizza', 'pizzeria']);
+    // console.log(trie.suggestions);
   });
 
   it('suggest should work using words from the dictionary', function(){
@@ -139,13 +133,8 @@ describe('TDD with TRIE', () => {
 
     trie.populate(dictionary);
 
-    expect(trie.suggest('piz')).to.deep.equal([ 'pize',
-                                                'pizza',
-                                                'pizzeria',
-                                                'pizzicato',
-                                                'pizzle'
-                                              ]);
-    console.log(trie.suggestions);
+    expect(trie.suggest('piz')).to.deep.equal([ 'pize', 'pizza', 'pizzeria', 'pizzicato', 'pizzle']);
+    // console.log(trie.suggestions);
   });
 
 
