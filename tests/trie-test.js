@@ -63,22 +63,28 @@ describe('TDD with TRIE', () => {
     expect(trie.count).to.eq(2);
   })
 
-  it.only('should be able to populate the trie given words from the dictionary and count all words', function(){
+  it('should recognize populate as a function', function(){
+    assert.isFunction(trie.populate)
+  })
 
-    var arrayOfWords = fs.readFileSync('/usr/share/dict/words').toString('utf-8').trim().split('\n')
+  it('populate should be able to take in an array, and insert each word', function(){
+    let dictionary = fs.readFileSync('/usr/share/dict/words').toString('utf-8').trim().split('\n')
 
-    arrayOfWords.forEach((word)=>{
-      trie.insert(word.toLowerCase())
-    })
+    trie.populate(dictionary)
+
+  })
+
+  it('should be able to populate the trie given words from the dictionary and count all words', function(){
+    let dictionary = fs.readFileSync('/usr/share/dict/words').toString('utf-8').trim().split('\n')
+
+    trie.populate(dictionary)
     expect(trie.count).to.equal(235886)
   })
 
   it('should be able to confirm whether populated words in the dictionary are actual words', function(){
-    var arrayOfWords = fs.readFileSync('/usr/share/dict/words').toString('utf-8').trim().split('\n')
+    let dictionary = fs.readFileSync('/usr/share/dict/words').toString('utf-8').trim().split('\n')
 
-    arrayOfWords.forEach((word)=>{
-      trie.insert(word.toLowerCase())
-    })
+    trie.populate(dictionary)
 
     expect(trie.head.children['d']
                     .children['u']
@@ -86,15 +92,12 @@ describe('TDD with TRIE', () => {
                     .children['e']
                     .isWord)
                     .to.be.true;
-
   });
 
   it('should be able to ascertain whether populated words are not actual words ', function(){
-    var arrayOfWords = fs.readFileSync('/usr/share/dict/words').toString('utf-8').trim().split('\n')
+    var dictionary = fs.readFileSync('/usr/share/dict/words').toString('utf-8').trim().split('\n')
 
-    arrayOfWords.forEach((word)=>{
-      trie.insert(word.toLowerCase())
-    })
+    trie.populate(dictionary)
 
     expect(trie.head.children['d']
                     .children['i']
@@ -114,25 +117,33 @@ describe('TDD with TRIE', () => {
 
   })
 
-  it.only('suggest should traverse the node structure and list stuff', function(){
+  it('suggest should traverse the node structure and suggest all words that contain the prefix ', function(){
     trie.insert('pizza')
     trie.insert('pizzeria')
     trie.insert('hey')
     trie.insert('suh')
     trie.insert('skateboard')
+    trie.insert('skateboards')
     trie.insert('surf')
 
+    expect(trie.suggest('p')).to.deep.equal(['pizza',
+                                             'pizzeria'
+                                           ])
+    console.log(trie.suggestions)
+  })
 
-    console.log(trie.suggest('skateboard'))
-    console.log(trie.suggest('p'))
+  it.only('suggest should work using words from the dictionary', function(){
+    let dictionary = fs.readFileSync('/usr/share/dict/words').toString('utf-8').trim().split('\n')
 
-    expect(trie.suggest('skateboard')).to.deep.equal(['skateboard'])
+    trie.populate(dictionary)
 
-    // console.log(trie.getAllWords())
-
-    // expect(trie.suggest('p')).to.deep.equal([])
-    // console.log(trie.head.children['p'].children['i'].children['z'].children['z'].children['a'].isWord)
-
+    expect(trie.suggest('piz')).to.deep.equal([ 'pize',
+                                                'pizza',
+                                                'pizzeria',
+                                                'pizzicato',
+                                                'pizzle'
+                                              ])
+    console.log(trie.suggestions)
   })
 
 

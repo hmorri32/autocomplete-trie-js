@@ -1,44 +1,14 @@
 class Node {
+  // the "vale" will reference the character in sequence
+  // create a children hash, keep reference to the parent,
+  // check to see if we're at the end of our word (isWord)
   constructor(value){
-    this.value = value;
+    this.value    = value;
     this.children = {};
-    this.endOfWord = null;
+    this.isWord   = false;
+    // this.parent   = null
   }
 }
 
-
-//
-// // we start with the TrieNode
-// function TrieNode(key) {
-//   // the "key" value will be the character in sequence
-//   this.key = key;
-//
-//   // we keep a reference to parent
-//   this.parent = null;
-//
-//   // we have hash of children
-//   this.children = {};
-//
-//   // check to see if the node is at the end
-//   this.end = false;
-// }
-//
-// // iterates through the parents to get the word.
-// // time complexity: O(k), k = word length
-// TrieNode.prototype.getWord = function() {
-//   var output = [];
-//   var node = this;
-//
-//   while (node !== null) {
-//     output.unshift(node.key);
-//     node = node.parent;
-//   }
-//
-//   return output.join('');
-// };
-//
-//
-//
-//
 
 export default Node
