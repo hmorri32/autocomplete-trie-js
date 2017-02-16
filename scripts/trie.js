@@ -61,11 +61,11 @@ class Trie {
   suggest(prefix){
     // let suggestStr = prefix.split('');
 
-    let current = this.head;
+    let node = this.head;
 
     for(let i = 0; i < prefix.length; i++){
-      if(current.children[prefix[i]]){
-        current = current.children[prefix[i]];
+      if(node.children[prefix[i]]){
+        node = node.children[prefix[i]];
       } else {
         return this.suggestions;
       }
@@ -75,12 +75,12 @@ class Trie {
     // no matter what
 
     // suggestStr.forEach(letter => {
-    //   if (current.children[letter]){
-    //     return current = current.children[letter];
+    //   if (node.children[letter]){
+    //     return node = node.children[letter];
     //   }
     // })
 
-    this.findWords(current,prefix);
+    this.findWords(node,prefix);
     return this.suggestions;
   }
 
@@ -88,15 +88,15 @@ class Trie {
   // if node is already at a word, push it.
   // if it isnt, keep iterating through each child.
 
-  findWords(current, prefix){
-    if (current.isWord){
+  findWords(node, prefix){
+    if (node.isWord){
       this.suggestions.push(prefix);
     }
 
-    let keys = Object.keys(current.children);
+    let keys = Object.keys(node.children);
 
     keys.forEach(letter => {
-      let next = current.children[letter];
+      let next = node.children[letter];
       this.findWords(next, (prefix + letter));
     });
   }
