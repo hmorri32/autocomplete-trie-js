@@ -118,7 +118,7 @@ describe('TDD with TRIE', () => {
 
   })
 
-  it('suggest should traverse the node structure and suggest all words that contain the prefix ', function(){
+  it.only('suggest should traverse the node structure and suggest all words that contain the prefix ', function(){
     trie.insert('pizza')
     trie.insert('pizzeria')
     trie.insert('hey')
@@ -133,7 +133,7 @@ describe('TDD with TRIE', () => {
     console.log(trie.suggestions)
   })
 
-  it.only('suggest should work using words from the dictionary', function(){
+  it('suggest should work using words from the dictionary', function(){
     let dictionary = fs.readFileSync('/usr/share/dict/words').toString('utf-8').trim().split('\n')
 
     trie.populate(dictionary)

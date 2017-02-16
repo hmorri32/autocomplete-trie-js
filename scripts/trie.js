@@ -1,7 +1,5 @@
-// import fs   from "fs";
+import fs   from "fs";
 // import Node from './node'
-
-
 
 class Node {
   // the "vale" will reference the character in sequence
@@ -62,14 +60,26 @@ class Trie {
   // returns every word weve inserted given the first letter(s)
 
   suggest(prefix){
-    let suggestStr = prefix.split('');
+    // let suggestStr = prefix.split('');
+
     let current = this.head;
 
-    suggestStr.forEach(letter => {
-      if (current.children[letter]){
-        return current = current.children[letter];
+    for(let i = 0; i < prefix.length; i++){
+      if(current.children[prefix[i]]){
+        current = current.children[prefix[i]]
+      } else {
+        return this.suggestions
       }
-    })
+    }
+
+    // For each not working, inserts random shit into beginning of suggestions
+    // no matter what
+
+    // suggestStr.forEach(letter => {
+    //   if (current.children[letter]){
+    //     return current = current.children[letter];
+    //   }
+    // })
 
     this.findWords(current,prefix);
     return this.suggestions
@@ -101,39 +111,40 @@ class Trie {
 
 // DOM !!!!!!!!!!!
 
-
-let insertInput  = document.getElementById('insert-field')
-let save         = document.getElementById('insert')
-let insertDiv    = document.getElementById('append-insert')
-
-let suggestInput = document.getElementById('suggestion-field')
-let searchBtn    = document.getElementById('suggest')
-let suggestDiv   = document.getElementById('append-suggest')
-
-var trie         = new Trie()
-
-save.addEventListener('click', function(){
-  let inputVal = insertInput.value
-  trie.insert(inputVal)
-  insertDiv.append("word: " + inputVal +  ", ")
-  insertInput.value = ('')
-  console.log(trie)
-})
-
-searchBtn.addEventListener('click', function(){
-  let inputValue = suggestInput.value
-  trie.suggest(inputValue)
-  suggestInput.value = ('')
-  
-  suggestDiv.append(trie.suggestions)
-
-
-})
-
-
-
+//
+// let insertInput  = document.getElementById('insert-field')
+// let save         = document.getElementById('insert')
+// let insertDiv    = document.getElementById('append-insert')
+//
+// let suggestInput = document.getElementById('suggestion-field')
+// let searchBtn    = document.getElementById('suggest')
+// let suggestDiv   = document.getElementById('append-suggest')
+//
+// var trie         = new Trie()
+//
+// save.addEventListener('click', function(){
+//   let inputVal      = insertInput.value
+//   insertInput.value = ('')
+//   trie.insert(inputVal)
+//   insertDiv.append("word: " + inputVal +  ", ")
+// })
+//
+// searchBtn.addEventListener('click', function(){
+//   let inputValue     = suggestInput.value
+//   suggestInput.value = ('')
+//
+//   trie.suggest(inputValue)
+//
+//
+//   suggestDiv.append(trie.suggestions)
+//   console.log(trie.suggestions)
+//
+// })
 
 
 
 
-// export default Trie;
+
+
+
+export default Trie;
