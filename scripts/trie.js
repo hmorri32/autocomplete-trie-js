@@ -59,7 +59,7 @@ class Trie {
   // returns every word we've inserted given the first letter(s)
 
   suggest(prefix){
-
+    this.suggestions = [];
     let node = this.head;
 
     for(let i = 0; i < prefix.length; i++){
@@ -94,37 +94,37 @@ class Trie {
 
 // DOM !!!!!!!!!!!
 
-
-let insertInput  = document.getElementById('insert-field');
-let saveBtn      = document.getElementById('insert');
-let insertDiv    = document.getElementById('append-insert');
-let suggestInput = document.getElementById('suggestion-field');
-let suggestDiv   = document.getElementById('append-suggest');
-const trie       = new Trie();
-
-saveBtn.addEventListener('click', () => {
-  let inputVal      = insertInput.value;
-  insertInput.value = ('');
-  trie.insert(inputVal);
-  insertDiv.append('word: ' + inputVal +  ', ');
-});
-
-suggestInput.addEventListener('keyup', () => {
-  trie.suggestions     = [];
-  suggestDiv.innerText = ('');
-  let inputValue       = suggestInput.value;
-
-  if(inputValue.length < 1){
-    suggestDiv.innerText = ('');
-  } else {
-    trie.suggest(inputValue);
-    suggestDiv.append(trie.suggestions);
-  }
-
-});
-
-
+//
+// let insertInput  = document.getElementById('insert-field');
+// let saveBtn      = document.getElementById('insert');
+// let insertDiv    = document.getElementById('append-insert');
+// let suggestInput = document.getElementById('suggestion-field');
+// let suggestDiv   = document.getElementById('append-suggest');
+// const trie       = new Trie();
+//
+// saveBtn.addEventListener('click', () => {
+//   let inputVal      = insertInput.value;
+//   insertInput.value = ('');
+//   trie.insert(inputVal);
+//   insertDiv.append('word: ' + inputVal +  ', ');
+// });
+//
+// suggestInput.addEventListener('keyup', () => {
+//   trie.suggestions     = [];
+//   suggestDiv.innerText = ('');
+//   let inputValue       = suggestInput.value;
+//
+//   if(inputValue.length < 1){
+//     suggestDiv.innerText = ('');
+//   } else {
+//     trie.suggest(inputValue);
+//     suggestDiv.append(trie.suggestions);
+//   }
+//
+// });
 
 
 
-// export default Trie;
+
+
+export default Trie;

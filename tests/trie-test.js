@@ -124,7 +124,22 @@ describe('TDD with TRIE', () => {
     trie.insert('surf');
 
     expect(trie.suggest('p')).to.deep.equal(['pizza', 'pizzeria']);
-    // console.log(trie.suggestions);
+    expect(trie.suggest('pi')).to.deep.equal(['pizza', 'pizzeria']);
+
+  });
+
+  it.only('suggest should work with multiple instances', function(){
+    trie.insert('pizza');
+    trie.insert('pizzeria');
+    trie.insert('hey');
+    trie.insert('suh');
+    trie.insert('skateboard');
+    trie.insert('skateboards');
+    trie.insert('surf');
+
+    expect(trie.suggest('p')).to.deep.equal(['pizza', 'pizzeria']);
+    expect(trie.suggest('pi')).to.deep.equal(['pizza', 'pizzeria']);
+    expect(trie.suggest('s')).to.deep.equal(['suh', 'surf', 'skateboard', 'skateboards']);
   });
 
   it('suggest should work using words from the dictionary', function(){
