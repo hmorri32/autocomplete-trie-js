@@ -23,7 +23,6 @@ describe('TDD with TRIE', () => {
     trie.insert('word');
   });
 
-
   it('should allow me to insert word and confirm that it is a word', function() {
     trie.insert('word');
     expect(trie.head.children['w']
@@ -134,27 +133,7 @@ describe('TDD with TRIE', () => {
     trie.populate(dictionary);
 
     expect(trie.suggest('piz')).to.deep.equal([ 'pize', 'pizza', 'pizzeria', 'pizzicato', 'pizzle']);
-    // console.log(trie.suggestions);
   });
 
 
 });
-
-// completion = new CompleteMe
-//
-// completion.insert("pizza")
-//
-// completion.count()
-// => 1
-//
-// completion.insert('suh')
-//
-// completion.count()
-//
-// => 2
-//
-// completion.suggest("piz")
-// => ["pizza"]
-//
-// completion.suggest('s')
-// => ["suh"]

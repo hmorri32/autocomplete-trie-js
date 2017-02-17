@@ -7,8 +7,8 @@ class Node {
 
   constructor(value){
     this.value    = value;
-    this.children = {};
     this.isWord   = false;
+    this.children = {};
   }
 }
 
@@ -56,10 +56,9 @@ class Trie {
     });
   }
 
-  // returns every word weve inserted given the first letter(s)
+  // returns every word we've inserted given the first letter(s)
 
   suggest(prefix){
-    // let suggestStr = prefix.split('');
 
     let node = this.head;
 
@@ -70,15 +69,6 @@ class Trie {
         return this.suggestions;
       }
     }
-
-    // For each not working, inserts random shit into beginning of suggestions
-    // no matter what
-
-    // suggestStr.forEach(letter => {
-    //   if (node.children[letter]){
-    //     return node = node.children[letter];
-    //   }
-    // })
 
     this.findWords(node,prefix);
     return this.suggestions;
@@ -100,50 +90,41 @@ class Trie {
       this.findWords(next, (prefix + letter));
     });
   }
-// object isntead of (suggestions) array, and key would be userstring
-
-// check user sleection
-  /// take the suggest words and count of user selections
-  // re sort array to accomadate that word
-
 }
 
 // DOM !!!!!!!!!!!
 
 
-// let insertInput  = document.getElementById('insert-field');
-// let saveBtn      = document.getElementById('insert');
-// let insertDiv    = document.getElementById('append-insert');
-//
-// let suggestInput = document.getElementById('suggestion-field');
-// let searchBtn    = document.getElementById('suggest');
-// let suggestDiv   = document.getElementById('append-suggest');
-//
-// const trie       = new Trie();
-//
-// saveBtn.addEventListener('click', function(){
-//   let inputVal      = insertInput.value;
-//   insertInput.value = ('');
-//   trie.insert(inputVal);
-//   insertDiv.append('word: ' + inputVal +  ', ');
-// });
-//
-// searchBtn.addEventListener('click', function(){
-//   suggestDiv.innerText = ('');
-//   trie.suggestions     = [];
-//   let inputValue       = suggestInput.value;
-//   suggestInput.value   = ('');
-//
-//   trie.suggest(inputValue);
-//
-//   suggestDiv.append(trie.suggestions);
-//
-// });
-//
-//
-//
+let insertInput  = document.getElementById('insert-field');
+let saveBtn      = document.getElementById('insert');
+let insertDiv    = document.getElementById('append-insert');
+let suggestInput = document.getElementById('suggestion-field');
+let suggestDiv   = document.getElementById('append-suggest');
+const trie       = new Trie();
+
+saveBtn.addEventListener('click', () => {
+  let inputVal      = insertInput.value;
+  insertInput.value = ('');
+  trie.insert(inputVal);
+  insertDiv.append('word: ' + inputVal +  ', ');
+});
+
+suggestInput.addEventListener('keyup', () => {
+  trie.suggestions     = [];
+  suggestDiv.innerText = ('');
+  let inputValue       = suggestInput.value;
+
+  if(inputValue.length < 1){
+    suggestDiv.innerText = ('');
+  } else {
+    trie.suggest(inputValue);
+    suggestDiv.append(trie.suggestions);
+  }
+
+});
 
 
 
 
-export default Trie;
+
+// export default Trie;
